@@ -1,0 +1,23 @@
+{
+	"name": "Java with MySQL",
+	"image": "mcr.microsoft.com/devcontainers/java:0-17",
+	"features": {
+	  "ghcr.io/devcontainers/features/java:1": {
+		"version": "none",
+		"installMaven": "true",
+		"installGradle": "false"
+	  },
+	  "ghcr.io/devcontainers-contrib/features/ant-sdkman:2": {}
+	},
+	"extensions": ["streetsidesoftware.code-spell-checker", "vscjava.vscode-java-pack"],
+	"forwardPorts": [3306],
+	"postCreateCommand": "echo \"This file was added by the postCreateCommand.\" > TEMP.md",
+	"settings": {
+	  "mysql.serverPath": "/usr/sbin/mysqld",
+	  "mysql.host": "127.0.0.1",
+	  "mysql.port": 3306,
+	  "mysql.user": "root",
+	  "mysql.password": "12345678"
+	}
+  }
+  
