@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina Atualização Finanças</title>
+
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <main> 
+    <a href="/financas">&#9666; Voltar</a> 
+      <h2>Edição Lançamento:</h2> <br>
+      <form action="/financas/update" method="post">
+        <!-- Na edição, devemos fornecer o ID para que seja indicado qual dado vai ser alterado -->
+        <input type="hidden" name="idCliente" th:value="${financeiro.idCliente}" />
+
+        <label for="descricao">Descrição: <span style="color: red">*</span></label>
+        <input th:value="${financeiro.descricao}" type="text" name="descricao" id="descricao" maxlength="100" required/>
+        
+        <label for="categoria">Categoria:<span style="color: red">*</span></label>
+        <select th:value="${financeiro.categoria}" name="categoria" id="categoria" required>
+          <option value="">Todas as categorias</option>
+          <option value="MORADIA">MORADIA</option>
+          <option value="ALIMENTAÇÃO">ALIMENTAÇÃO</option>
+          <option value="TRANSPORTE">TRANSPORTE</option>
+          <option value="SAÚDE">SAÚDE</option>
+          <option value="ENTRETENIMENTO">ENTRETENIMENTO</option>
+          <option value="DÍVIDAS">DÍVIDAS</option>
+          <option value="PESSOAL">PESSOAL</option>
+        </select>
+
+        <label for="valor">Valor:<span style="color: red">*</span></label>
+        <input th:value="${financeiro.valor}" type="number" name="valor" id="valor" required/>
+
+        <label for="tipo">Tipo:<span style="color: red">*</span></label>
+        <select th:value="${financeiro.tipo}" name="tipo" id="tipo" required>
+        <option value="ENTRADA">ENTRADA</option>
+        <option value="SAIDA">SAÍDA</option>
+        </select>
+
+        <label for="data">Data:<span style="color: red">*</span></label>
+        <input th:value="${financeiro.data}" type="date" name="data" id="data" required/>
+
+        <button type="submit">SALVAR ALTERAÇÕES</button>
+      </form><br>
+  </main>  
+  <script src="/js/main.js"></script>
+</body>
+</html>

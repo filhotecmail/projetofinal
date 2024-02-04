@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina Finanças</title>
+
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="stylesheet" href="/css/styles2.css" />
+</head>
+<body>
+  <main>
+    <a href="/">&#9666; Voltar</a> <br>
+    
+    <div class="filters">
+      <label for="categoriaFilter">Filtrar por Categoria:</label>
+      <select id="categoriaFilter">
+        <option value="">Todas as categorias</option>
+        <option value="MORADIA">MORADIA</option>
+        <option value="ALIMENTAÇÃO">ALIMENTAÇÃO</option>
+        <option value="TRANSPORTE">TRANSPORTE</option>
+        <option value="SAÚDE">SAÚDE</option>
+        <option value="ENTRETENIMENTO">ENTRETENIMENTO</option>
+        <option value="DÍVIDAS">DÍVIDAS</option>
+        <option value="PESSOAL">PESSOAL</option>
+      </select>
+      <button type="submit">Filtrar por Categoria</button>
+
+      <button type="submit">Limpar Filtros</button>
+
+        <label for="dataInicio">Data Início:</label>
+        <input type="date" id="dataInicio">
+
+        <label for="dataFim">Data Fim:</label>
+        <input type="date" id="dataFim">
+
+        <button type="submit">Filtrar por Datas</button>
+
+        <button type="submit">Limpar Filtros</button>
+      <hr>
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th >Valor</th>
+            <th >Tipo</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Na tag que se repete aplique th:each -->
+          <tr th:each="financeiro : ${listaFinancas}">
+            <!-- <td>
+              <a 
+                th:href="'/financas/'+${financeiro.idCliente}" 
+                th:text="${financeiro.descricao}">
+              </a>
+            </td> -->
+            <td th:text="${financeiro.descricao}"></td>
+            <td th:text="${financeiro.categoria}"></td>
+            <td th:text="${financeiro.valor}"></td>
+            <td th:text="${financeiro.tipo}"></td>
+            <td th:text="${financeiro.data}"></td>
+            <td>
+      
+  </main>  
+  <script src="/js/main.js"></script>
+</body>
+</html>

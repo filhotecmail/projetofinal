@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina Finanças</title>
+
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="stylesheet" href="/css/styles2.css" />
+</head>
+<body>
+  <main>
+    <a href="/">&#9666; Voltar</a> <br>
+    <a href="/filtro">Filtro &#9656;</a>
+    <div class="resume">
+      <div>
+        Entradas: R$
+        <span class="incomes">0.00</span>
+      </div>
+      <div>
+        Saídas: R$
+        <span class="expenses">0.00</span>
+      </div>
+      <div>
+        Total: R$
+        <span class="total">0.00</span>
+      </div>
+    </div><br>
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th >Valor</th>
+            <th >Tipo</th>
+            <th>Data</th>
+            <th>Excluir</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Na tag que se repete aplique th:each -->
+          <tr th:each="financeiro : ${listaFinancas}">
+            <!-- <td>
+              <a 
+                th:href="'/financas/'+${financeiro.idCliente}" 
+                th:text="${financeiro.descricao}">
+              </a>
+            </td> -->
+            <td th:text="${financeiro.descricao}"></td>
+            <td th:text="${financeiro.categoria}"></td>
+            <td th:text="${financeiro.valor}"></td>
+            <td th:text="${financeiro.tipo}"></td>
+            <td th:text="${financeiro.data}"></td>
+            <td>
+              <form action="/financas/delete" method="post">
+                <input type="hidden" name="id" th:value="${financeiro.idCliente}"/>
+                <button type="submit">Excluir</button>
+              </form>
+            </td>
+            <td>
+              <a th:href="'/financas/'+${financeiro.idCliente}+'/edit'">
+                <button>Editar</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>   
+      <h2>Novo Lançamento:</h2> <br>
+      <form action="/financas/create" method="post">
+        <!-- Na inserção, atente-se para os campos do Model -->
+        <label for="descricao">Descrição: <span style="color: red">*</span></label>
+        <input type="text" name="descricao" id="descricao" maxlength="100" required/>
+
+        <label for="categoria">Categoria:<span style="color: red">*</span></label>
+        <select name="categoria" id="categoria" required>
+        <option value="">Todas as categorias</option>
+        <option value="MORADIA">MORADIA</option>
+        <option value="ALIMENTAÇÃO">ALIMENTAÇÃO</option>
+        <option value="TRANSPORTE">TRANSPORTE</option>
+        <option value="SAÚDE">SAÚDE</option>
+        <option value="ENTRETENIMENTO">ENTRETENIMENTO</option>
+        <option value="DÍVIDAS">DÍVIDAS</option>
+        <option value="PESSOAL">PESSOAL</option>
+        </select>
+
+        <label for="valor">Valor:<span style="color: red">*</span></label>
+        <input type="number" name="valor" id="valor" required/>
+
+        <label for="tipo">Tipo:<span style="color: red">*</span></label>
+        <select name="tipo" id="tipo" required>
+        <option value="ENTRADA">ENTRADA</option>
+        <option value="SAIDA">SAIDA</option>
+        </select>
+
+        <label for="data">Data:<span style="color: red">*</span></label>
+        <input type="date" name="data" id="data" required/>
+
+        <button type="submit">INCLUIR</button>
+      </form><br>
+  </main>  
+  <script src="/js/main.js"></script>
+</body>
+</html>
